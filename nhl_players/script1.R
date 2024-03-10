@@ -125,6 +125,18 @@ tapply(
   sum
 )
 # ANS: NO!
-
-
+#
+# refactoring; a function for quarters
+add_quarter_col <- function (df_input, df_col) {
+  df_input |> 
+    mutate(
+      quarter = case_when(
+        df_col %in% quarter1 ~ 1,
+        df_col %in% quarter2 ~ 2,
+        df_col %in% quarter3 ~ 3,
+        df_col %in% quarter4 ~ 4
+      )
+    ) 
+}
+add_quarter_col(canada_births_1991_2022, canada_births_1991_2022$month)
 
